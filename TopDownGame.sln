@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopDownGame", "TopDownGame\TopDownGame\TopDownGame.csproj", "{1126C50B-AC9E-40F3-A75E-BA527045FB91}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TopDownGameContent", "TopDownGame\TopDownGameContent\TopDownGameContent.contentproj", "{F9FECB62-0155-4803-A998-1A45BF92DA11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1126C50B-AC9E-40F3-A75E-BA527045FB91}.Debug|x86.ActiveCfg = Debug|x86
+		{1126C50B-AC9E-40F3-A75E-BA527045FB91}.Debug|x86.Build.0 = Debug|x86
+		{1126C50B-AC9E-40F3-A75E-BA527045FB91}.Release|x86.ActiveCfg = Release|x86
+		{1126C50B-AC9E-40F3-A75E-BA527045FB91}.Release|x86.Build.0 = Release|x86
+		{F9FECB62-0155-4803-A998-1A45BF92DA11}.Debug|x86.ActiveCfg = Debug|x86
+		{F9FECB62-0155-4803-A998-1A45BF92DA11}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
