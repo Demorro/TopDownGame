@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using TopDownGame.SpriteClasses;
+using TopDownGame.LevelClasses;
 
 namespace TopDownGame
 {
@@ -19,10 +21,19 @@ namespace TopDownGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+
+        Player player = new Player();
+
+        Level1 level1 = new Level1();
+
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = 800;
+            graphics.PreferredBackBufferWidth = 1200;
         }
 
         /// <summary>
@@ -34,7 +45,6 @@ namespace TopDownGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -48,6 +58,8 @@ namespace TopDownGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            level1.LoadContent(this.Content, GraphicsDevice);
+            player.LoadContent(this.Content, "Placeholder",(graphics.PreferredBackBufferWidth / 2) - 25,(graphics.PreferredBackBufferHeight / 2) - 25,1,true,GraphicsDevice);
         }
 
         /// <summary>
@@ -73,6 +85,7 @@ namespace TopDownGame
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+            player.Update();
         }
 
         /// <summary>
@@ -84,6 +97,10 @@ namespace TopDownGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            level1.Render(spriteBatch);
+            player.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
