@@ -85,7 +85,7 @@ namespace TopDownGame
             // TODO: Add your update logic here
 
             base.Update(gameTime);
-            player.Update();
+            player.Update(level1.colliders);
         }
 
         /// <summary>

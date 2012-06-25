@@ -13,7 +13,7 @@ namespace TopDownGame.SpriteClasses
 {
     class PlayerController
     {
-        public float hardSpeedCap = 6;
+        public float hardSpeedCap = 8;
         float derivedSpeedCap; //the acceleration used, cant just use "acceleration" cause it needs to be changed if you are going diagonal.
         public float acceleration = 1.5f;
         float derivedAcceleration; //the acceleration used, cant just use "acceleration" cause it needs to be changed if you are going diagonal.
@@ -69,15 +69,15 @@ namespace TopDownGame.SpriteClasses
             //just general tightening of the movement
             if ((keyboardState.IsKeyDown(Keys.W)) && (keyboardState.IsKeyDown(Keys.S)))
             {
-                velocity.Y = 0;
+                velocity.Y = velocity.Y * slowDownFactor;
             }
 
             if ((keyboardState.IsKeyDown(Keys.A)) && (keyboardState.IsKeyDown(Keys.D)))
             {
-                velocity.X = 0;
+                velocity.X = velocity.X * slowDownFactor;
             }
 
-
+            //Movement controls
             if (keyboardState.IsKeyDown(Keys.W)) //W key pushed down, moving up
             {
 
@@ -94,7 +94,7 @@ namespace TopDownGame.SpriteClasses
                 {
                     velocity.Y = velocity.Y + derivedAcceleration;
                 }
-            }
+        }
 
             if (keyboardState.IsKeyDown(Keys.A))//A key pushed left, moving up
             {
@@ -115,6 +115,7 @@ namespace TopDownGame.SpriteClasses
             }
             
             //Debug Code
+            /*
             Console.Write("Velocity.X : ");
             Console.Write(velocity.X);
             Console.WriteLine();
@@ -126,7 +127,7 @@ namespace TopDownGame.SpriteClasses
             Console.Write("Position : ");
             Console.Write(position);
             Console.WriteLine();
-            
+            */
 
             keyboardState = Keyboard.GetState(); //gets the keyboard state for input
             applyFriction();

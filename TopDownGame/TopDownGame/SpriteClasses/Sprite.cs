@@ -42,6 +42,7 @@ namespace TopDownGame.SpriteClasses
         // LOADCONTENT OVERLOADS
         //************************
         //Loadcontent overload for sprites that are just 1 image.
+        
         public void LoadContent(ContentManager theContentManager, string theAssetName, float x, float y, float Scale, bool generateCollider, GraphicsDevice graphicsDevice)
         {
             //Drawing
@@ -66,9 +67,10 @@ namespace TopDownGame.SpriteClasses
                 fullColliderRectangle.LoadContent(graphicsDevice);
             }
         }
-
+        
         //Full LoadContent Overload with spritesheet animations, as it deals with Sourcerect.
-        public void LoadContent(ContentManager theContentManager, string theAssetName, float x, float y, float Scale,bool generateCollider, int spritewidth, int spriteheight, int spritex, int spritey,GraphicsDevice graphicsDevice)
+
+        public void LoadContent(ContentManager theContentManager, string theAssetName, float x, float y, float Scale, bool generateCollider, int spritewidth, int spriteheight, int spritex, int spritey, GraphicsDevice graphicsDevice)
         {
             //Drawing
             spriteTexture = theContentManager.Load<Texture2D>(theAssetName);
@@ -92,6 +94,7 @@ namespace TopDownGame.SpriteClasses
                 fullColliderRectangle.LoadContent(graphicsDevice);
             }
         }
+         
         //************************
         // LOADCONTENT OVERLOADS DONE
         //************************

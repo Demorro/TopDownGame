@@ -19,7 +19,7 @@ namespace TopDownGame.LevelClasses
 
         //collision
         List<WallTile> walls = new List<WallTile>();
-        List<Rectangle> colliders = new List<Rectangle>();
+        public List<Rectangle> colliders = new List<Rectangle>();
 
         //walls
         int wallTileNumber = 0; //used for keeping track of what walltile we're on.
@@ -71,6 +71,7 @@ namespace TopDownGame.LevelClasses
             drawVerticalWall(1100, 50, 14, contentmanager, graphicsdevice);
             drawHorizontalWall(100, 50, 20, contentmanager, graphicsdevice);
             drawHorizontalWall(100, 700, 20, contentmanager, graphicsdevice);
+            drawDiagonalWall(500, 400, 3, contentmanager, graphicsdevice);
         }
 
         private void drawHorizontalWall(int startX, int startY, int numberOfBlocks, ContentManager contentmanager, GraphicsDevice graphicsdevice)

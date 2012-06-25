@@ -110,6 +110,7 @@
     <Compile Include="LevelClasses\FloorTile.cs" />
     <Compile Include="LevelClasses\Level1.cs" />
     <Compile Include="LevelClasses\WallTile.cs" />
+    <Compile Include="SpriteClasses\CollisionController.cs" />
     <Compile Include="SpriteClasses\DebugRectangle.cs" />
     <Compile Include="SpriteClasses\Object.cs" />
     <Compile Include="SpriteClasses\Player.cs" />
