@@ -20,7 +20,7 @@ namespace TopDownGame.SpriteClasses
         Rectangle bottomCollider;
         Rectangle leftCollider;
         Rectangle rightCollider;
-
+        //debug code
         DebugRectangle topColliderRectangle = new DebugRectangle();
         DebugRectangle bottomColliderRectangle = new DebugRectangle();
         DebugRectangle leftColliderRectangle = new DebugRectangle();
@@ -28,7 +28,8 @@ namespace TopDownGame.SpriteClasses
 
         public Vector2 velocity = new Vector2(0, 0);
 
-
+        int screenwidth = 0;
+        int screenheight = 0;
 
         public void Update(List<Rectangle> levelColliders)
         {
@@ -67,6 +68,10 @@ namespace TopDownGame.SpriteClasses
             sourceRect.Height = spriteTexture.Height;
             sourceRect.X = 0;
             sourceRect.Y = 0;
+
+            //get the screen height
+            screenheight = graphicsDevice.Viewport.Height;
+            screenwidth = graphicsDevice.Viewport.Width;
 
             //Standard Colliders
             if (generateCollider == true)

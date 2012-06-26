@@ -11,7 +11,12 @@ using TopDownGame.SpriteClasses;
 
 namespace TopDownGame.LevelClasses
 {
-    class Level1
+
+    //In order to have levels, these things must be done.
+    //
+    // 1. FloorArray must be made big enough. E.g, for a 2x2 world, the array would be [2,2]. for a 14x3, (14 in x, 3 in y), it would of course be [14,3]
+
+    class Level3
     {
         int numberOfVerticalTiles = 0;
         int numberOfHorizontalTiles = 0;
@@ -48,7 +53,8 @@ namespace TopDownGame.LevelClasses
             }
         }
 
-        private void setFloorTileRectangle(int xStart, int yStart, int width, int height, ContentManager contentmanager, GraphicsDevice graphicsdevice){
+        private void setFloorTileRectangle(int xStart, int yStart, int width, int height, ContentManager contentmanager, GraphicsDevice graphicsdevice)
+        {
 
             numberOfHorizontalTiles = (int)(width / FloorTile.width) + 1;
             numberOfVerticalTiles = (int)(height / FloorTile.height) + 1;
@@ -68,9 +74,9 @@ namespace TopDownGame.LevelClasses
         private void setWalls(ContentManager contentmanager, GraphicsDevice graphicsdevice)
         {
             drawVerticalWall(0, 0, 16, contentmanager, graphicsdevice); //left wall
-            drawHorizontalWall(50, 0, 22, contentmanager, graphicsdevice); //top wall
-            drawHorizontalWall(50, 750, 10, contentmanager, graphicsdevice); //bottom wall left
-            drawHorizontalWall(650, 750, 10, contentmanager, graphicsdevice); //bottom wall right
+            drawHorizontalWall(50, 0, 10, contentmanager, graphicsdevice); //top wall left
+            drawHorizontalWall(650, 0, 10, contentmanager, graphicsdevice); //top wall right
+            drawHorizontalWall(50, 750, 22, contentmanager, graphicsdevice); //bottom wall
             drawVerticalWall(1150, 0, 7, contentmanager, graphicsdevice); //right wall top
             drawVerticalWall(1150, 450, 7, contentmanager, graphicsdevice); //right wall bottom
         }

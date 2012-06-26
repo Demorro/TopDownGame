@@ -21,10 +21,8 @@ namespace TopDownGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-
         Player player = new Player();
-
-        Level1 level1 = new Level1();
+        LevelHandler levelHandler = new LevelHandler();
 
 
 
@@ -58,7 +56,7 @@ namespace TopDownGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            level1.LoadContent(this.Content, GraphicsDevice);
+            levelHandler.LoadContent(this.Content, GraphicsDevice);
             player.LoadContent(this.Content, "Placeholder",(graphics.PreferredBackBufferWidth / 2) - 25,(graphics.PreferredBackBufferHeight / 2) - 25,1,true,GraphicsDevice);
         }
 
@@ -85,7 +83,15 @@ namespace TopDownGame
             // TODO: Add your update logic here
 
             base.Update(gameTime);
-            player.Update(level1.colliders);
+            levelHandler.HandleLevels(player.position, player.fullCollider);
+
+            //deal with switching levels
+            if (levelHandler.playerShouldUpdate == true)
+            {
+                player.position = levelHandler.playersPosition;
+            }
+
+            player.Update(levelHandler.colliders);
         }
 
         /// <summary>
@@ -98,7 +104,7 @@ namespace TopDownGame
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            level1.Render(spriteBatch);
+            levelHandler.Draw(spriteBatch);
             player.Draw(spriteBatch);
             spriteBatch.End();
 

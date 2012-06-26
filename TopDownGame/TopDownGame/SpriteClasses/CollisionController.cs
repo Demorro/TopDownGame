@@ -38,37 +38,62 @@ namespace TopDownGame.SpriteClasses
 
             for (int i = 0; i < colliders.Count; i++)
             {
-                 //then deal with the subcolliders
-                //upwards movement
-                if (topCollider.Intersects(colliders[i]))
+                if (fullCollider.Intersects(colliders[i])) //only checks each subcollider if the fullcollider is intersecting, saving on computation
                 {
-                    returnedPosition.Y = colliders[i].Y + colliders[i].Height;
-                    returnedVelocity.Y = 0;
-                    checkCollision = true;
-                }
-                //downwards movement
-                if (bottomCollider.Intersects(colliders[i]))
-                {
-                    returnedPosition.Y = colliders[i].Y - fullCollider.Height;
-                    returnedVelocity.Y = 0;
-                    checkCollision = true;
-                }
-                //leftwards movement
-                if (leftCollider.Intersects(colliders[i]))
-                {
-                    returnedPosition.X = colliders[i].X + fullCollider.Width;
-                    returnedVelocity.X = 0;
-                    checkCollision = true;
-                }
-                //rightwards movement
-                if (rightCollider.Intersects(colliders[i]))
-                {
-                    returnedPosition.X = colliders[i].X - fullCollider.Width;
-                    returnedVelocity.X = 0;
-                    checkCollision = true;
+                    //then deal with the subcolliders
+                    //upwards movement
+                    if (topCollider.Intersects(colliders[i]))
+                    {
+                        returnedPosition.Y = colliders[i].Y + colliders[i].Height;
+                        returnedVelocity.Y = 0;
+                        checkCollision = true;
+                    }
+                    //downwards movement
+                    if (bottomCollider.Intersects(colliders[i]))
+                    {
+                        returnedPosition.Y = colliders[i].Y - fullCollider.Height;
+                        returnedVelocity.Y = 0;
+                        checkCollision = true;
+                    }
+                    //leftwards movement
+                    if (leftCollider.Intersects(colliders[i]))
+                    {
+                        returnedPosition.X = colliders[i].X + fullCollider.Width;
+                        returnedVelocity.X = 0;
+                        checkCollision = true;
+                    }
+                    //rightwards movement
+                    if (rightCollider.Intersects(colliders[i]))
+                    {
+                        returnedPosition.X = colliders[i].X - fullCollider.Width;
+                        returnedVelocity.X = 0;
+                        checkCollision = true;
+                    }
+
+                    //deal with diagonal spazzing
+                    //these functions just offset it a bit so that it dosent spaz out, and it alway preferrs a horizontal offset
+                    if ((topCollider.Intersects(colliders[i])) && (rightCollider.Intersects(colliders[i])))
+                    {
+                        returnedPosition.X = returnedPosition.X + (fullCollider.Width - topCollider.Width) / 2;
+                    }
+
+                    if ((topCollider.Intersects(colliders[i])) && (leftCollider.Intersects(colliders[i])))
+                    {
+                        returnedPosition.X = returnedPosition.X - (fullCollider.Width - topCollider.Width) / 2;
+                    }
+
+                    if ((bottomCollider.Intersects(colliders[i])) && (rightCollider.Intersects(colliders[i])))
+                    {
+                        returnedPosition.X = returnedPosition.X + (fullCollider.Width - topCollider.Width) / 2;
+                    }
+
+                    if ((bottomCollider.Intersects(colliders[i])) && (leftCollider.Intersects(colliders[i])))
+                    {
+                        returnedPosition.X = returnedPosition.X - (fullCollider.Width - topCollider.Width) / 2;
+                    }
                 }
             }
-
+            
             return checkCollision;
         }
     }

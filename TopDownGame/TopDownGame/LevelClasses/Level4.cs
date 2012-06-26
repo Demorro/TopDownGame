@@ -11,7 +11,7 @@ using TopDownGame.SpriteClasses;
 
 namespace TopDownGame.LevelClasses
 {
-    class Level1
+    class Level4
     {
         int numberOfVerticalTiles = 0;
         int numberOfHorizontalTiles = 0;
@@ -48,7 +48,8 @@ namespace TopDownGame.LevelClasses
             }
         }
 
-        private void setFloorTileRectangle(int xStart, int yStart, int width, int height, ContentManager contentmanager, GraphicsDevice graphicsdevice){
+        private void setFloorTileRectangle(int xStart, int yStart, int width, int height, ContentManager contentmanager, GraphicsDevice graphicsdevice)
+        {
 
             numberOfHorizontalTiles = (int)(width / FloorTile.width) + 1;
             numberOfVerticalTiles = (int)(height / FloorTile.height) + 1;
@@ -67,12 +68,12 @@ namespace TopDownGame.LevelClasses
 
         private void setWalls(ContentManager contentmanager, GraphicsDevice graphicsdevice)
         {
-            drawVerticalWall(0, 0, 16, contentmanager, graphicsdevice); //left wall
-            drawHorizontalWall(50, 0, 22, contentmanager, graphicsdevice); //top wall
-            drawHorizontalWall(50, 750, 10, contentmanager, graphicsdevice); //bottom wall left
-            drawHorizontalWall(650, 750, 10, contentmanager, graphicsdevice); //bottom wall right
-            drawVerticalWall(1150, 0, 7, contentmanager, graphicsdevice); //right wall top
-            drawVerticalWall(1150, 450, 7, contentmanager, graphicsdevice); //right wall bottom
+            drawVerticalWall(0, 0, 7, contentmanager, graphicsdevice); //left wall top
+            drawVerticalWall(0, 450, 7, contentmanager, graphicsdevice); //left wall bottom
+            drawHorizontalWall(50, 0, 10, contentmanager, graphicsdevice); //top wall left
+            drawHorizontalWall(650, 0, 10, contentmanager, graphicsdevice); //top wall right
+            drawHorizontalWall(50, 750, 22, contentmanager, graphicsdevice); //bottom wall
+            drawVerticalWall(1150, 0, 16, contentmanager, graphicsdevice); //right wall
         }
 
         private void drawHorizontalWall(int startX, int startY, int numberOfBlocks, ContentManager contentmanager, GraphicsDevice graphicsdevice)

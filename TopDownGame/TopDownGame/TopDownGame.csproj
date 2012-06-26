@@ -109,6 +109,10 @@
   <ItemGroup>
     <Compile Include="LevelClasses\FloorTile.cs" />
     <Compile Include="LevelClasses\Level1.cs" />
+    <Compile Include="LevelClasses\Level2.cs" />
+    <Compile Include="LevelClasses\Level3.cs" />
+    <Compile Include="LevelClasses\Level4.cs" />
+    <Compile Include="LevelClasses\LevelHandler.cs" />
     <Compile Include="LevelClasses\WallTile.cs" />
     <Compile Include="SpriteClasses\CollisionController.cs" />
     <Compile Include="SpriteClasses\DebugRectangle.cs" />
