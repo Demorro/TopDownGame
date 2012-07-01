@@ -13,7 +13,13 @@ namespace TopDownGame.SpriteClasses
     class Player : Sprite
     {
         PlayerController playerController = new PlayerController();
-        CollisionController collisionController = new CollisionController(); 
+        CollisionController collisionController = new CollisionController();
+        AnimationController animationController = new AnimationController();
+
+        static public Rectangle playerSize = new Rectangle(0, 0, 45, 70); //important for the collision
+
+        //Y collider offset
+        private int yOffset = 30;   //Y offset for the colliders, because the player if from a weird front facing perspective, it works better if only the bottom part of the player collides
 
         //SubColliders
         Rectangle topCollider;
@@ -28,11 +34,17 @@ namespace TopDownGame.SpriteClasses
 
         public Vector2 velocity = new Vector2(0, 0);
 
-        int screenwidth = 0;
-        int screenheight = 0;
+        //safety bounds
+        int safetyBounds;
+
+        public Player()
+        {
+            debugModeActive = true;
+        }
 
         public void Update(List<Rectangle> levelColliders)
         {
+            safetyBounds = (int)playerController.hardSpeedCap + 5;
 
             //movement
             position = playerController.movementController(position,velocity);
@@ -48,13 +60,18 @@ namespace TopDownGame.SpriteClasses
 
             //update Colliders
             //the hardspeedcap is used here so that when detecting against a moving object, you never get it clipping too far in, eg it never clips far enough to detect the top collider while moving right
-            fullCollider = UpdateRectangleToObject(fullCollider);
-            topCollider = UpdateRectangleToObject(fullCollider, (int)playerController.hardSpeedCap, 0, -fullCollider.Height / 2, -(int)playerController.hardSpeedCap * 2);
-            bottomCollider = UpdateRectangleToObject(fullCollider, (int)playerController.hardSpeedCap, fullCollider.Height/2, -fullCollider.Height / 2, -(int)playerController.hardSpeedCap * 2);
-            leftCollider = UpdateRectangleToObject(fullCollider, 0, (int)playerController.hardSpeedCap, -(int)playerController.hardSpeedCap * 2, -fullCollider.Width / 2);
-            rightCollider = UpdateRectangleToObject(fullCollider, fullCollider.Width / 2, (int)playerController.hardSpeedCap, -(int)playerController.hardSpeedCap * 2, -fullCollider.Width / 2);
+            fullCollider = UpdateRectangleToObject(fullCollider,0,yOffset,-yOffset,0);
+            topCollider = UpdateRectangleToObject(fullCollider, safetyBounds, yOffset, (-fullCollider.Height / 2) - yOffset, -safetyBounds * 2);
+            bottomCollider = UpdateRectangleToObject(fullCollider, safetyBounds, (fullCollider.Height/2) + yOffset, (-fullCollider.Height / 2) - yOffset, -safetyBounds * 2);
+            leftCollider = UpdateRectangleToObject(fullCollider, 0, safetyBounds + yOffset, (-safetyBounds * 2) -yOffset, -fullCollider.Width / 2);
+            rightCollider = UpdateRectangleToObject(fullCollider, fullCollider.Width / 2, safetyBounds + yOffset, (-safetyBounds * 2) -yOffset, -fullCollider.Width / 2);
 
+            //animate
+            animationController.animationHandler();
 
+            //Set the current animation frame and sprite effect
+            sourceRect = animationController.currentAnimationRectangle;
+            spriteEffect = animationController.spriteEffect;
         }
 
         public new void LoadContent(ContentManager theContentManager, string theAssetName, float x, float y, float Scale, bool generateCollider, GraphicsDevice graphicsDevice)
@@ -69,9 +86,34 @@ namespace TopDownGame.SpriteClasses
             sourceRect.X = 0;
             sourceRect.Y = 0;
 
-            //get the screen height
-            screenheight = graphicsDevice.Viewport.Height;
-            screenwidth = graphicsDevice.Viewport.Width;
+            //Standard Colliders
+            if (generateCollider == true)
+            {
+                fullCollider = new Rectangle((int)position.X, (int)position.Y, sourceRect.Width, sourceRect.Height);
+            }
+
+            //Debug Code
+            if (debugModeActive == true)
+            {
+                fullColliderRectangle.LoadContent(graphicsDevice);
+                leftColliderRectangle.LoadContent(graphicsDevice);
+                rightColliderRectangle.LoadContent(graphicsDevice);
+                topColliderRectangle.LoadContent(graphicsDevice);
+                bottomColliderRectangle.LoadContent(graphicsDevice);
+            }
+        }
+
+        public new void LoadContent(ContentManager theContentManager, string theAssetName, float x, float y, float Scale, bool generateCollider, int spritewidth, int spriteheight, int spritex, int spritey, GraphicsDevice graphicsDevice)
+        {
+            //Drawing
+            spriteTexture = theContentManager.Load<Texture2D>(theAssetName);
+            this.position.X = x;
+            this.position.Y = y;
+            this.scale = Scale;
+            sourceRect.Width = spritewidth;
+            sourceRect.Height = spriteheight;
+            sourceRect.X = spritex;
+            sourceRect.Y = spritey;
 
             //Standard Colliders
             if (generateCollider == true)
@@ -83,10 +125,10 @@ namespace TopDownGame.SpriteClasses
             if (debugModeActive == true)
             {
                 fullColliderRectangle.LoadContent(graphicsDevice);
-                topColliderRectangle.LoadContent(graphicsDevice);
-                bottomColliderRectangle.LoadContent(graphicsDevice);
                 leftColliderRectangle.LoadContent(graphicsDevice);
                 rightColliderRectangle.LoadContent(graphicsDevice);
+                topColliderRectangle.LoadContent(graphicsDevice);
+                bottomColliderRectangle.LoadContent(graphicsDevice);
             }
         }
         

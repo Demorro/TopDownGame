@@ -120,6 +120,11 @@ namespace TopDownGame.SpriteClasses
         //This is a generic animation function, and will work good for any looping animation, takes in a predefined array of rectangles(the rectangle positions on the spritesheet,) and the desired speed of the animaton
         public void Animate(Rectangle[] sourcerects, int animationspeed)
         {
+            if (animationCounter > sourcerects.Length) //Array overflow failsafe
+            {
+                animationCounter = 0;
+            }
+
             if ((animationCounter == 0) || ((animationCounter == sourcerects.Length) && (animationTimer.ElapsedMilliseconds > (205 - (animationspeed*5))))) //If the animation is at the very start or (at the very end and with the time after the final frame elapsed)
             {
                 animationCounter = 0; //Set animation counter to 0 in case that this is coming from the end of the loop

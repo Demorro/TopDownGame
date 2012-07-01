@@ -12,9 +12,6 @@ using TopDownGame.SpriteClasses;
 namespace TopDownGame.LevelClasses
 {
 
-    //In order to have levels, these things must be done.
-    //
-    // 1. FloorArray must be made big enough. E.g, for a 2x2 world, the array would be [2,2]. for a 14x3, (14 in x, 3 in y), it would of course be [14,3]
 
     class Level3
     {

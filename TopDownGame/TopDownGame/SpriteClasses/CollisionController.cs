@@ -44,30 +44,34 @@ namespace TopDownGame.SpriteClasses
                     //upwards movement
                     if (topCollider.Intersects(colliders[i]))
                     {
-                        returnedPosition.Y = colliders[i].Y + colliders[i].Height;
+                        returnedPosition.Y = (colliders[i].Y + colliders[i].Height) - (Player.playerSize.Height - fullCollider.Height);
                         returnedVelocity.Y = 0;
                         checkCollision = true;
+                        Console.WriteLine("TOPCOLLIDER");
                     }
                     //downwards movement
                     if (bottomCollider.Intersects(colliders[i]))
                     {
-                        returnedPosition.Y = colliders[i].Y - fullCollider.Height;
+                        returnedPosition.Y = (colliders[i].Y - fullCollider.Height) - (Player.playerSize.Height - fullCollider.Height);
                         returnedVelocity.Y = 0;
                         checkCollision = true;
+                        Console.WriteLine("BOTTOMCOLLIDER");
                     }
                     //leftwards movement
                     if (leftCollider.Intersects(colliders[i]))
                     {
-                        returnedPosition.X = colliders[i].X + fullCollider.Width;
+                        returnedPosition.X = colliders[i].X + colliders[i].Width;
                         returnedVelocity.X = 0;
                         checkCollision = true;
+                        Console.WriteLine("LEFTCOLLIDER");
                     }
                     //rightwards movement
                     if (rightCollider.Intersects(colliders[i]))
                     {
-                        returnedPosition.X = colliders[i].X - fullCollider.Width;
+                        returnedPosition.X = (colliders[i].X - fullCollider.Width); //- (Player.playerSize.Width - fullCollider.Width);
                         returnedVelocity.X = 0;
                         checkCollision = true;
+                        Console.WriteLine("RIGHTCOLLIDER");
                     }
 
                     //deal with diagonal spazzing

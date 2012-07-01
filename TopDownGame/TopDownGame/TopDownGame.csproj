@@ -114,6 +114,7 @@
     <Compile Include="LevelClasses\Level4.cs" />
     <Compile Include="LevelClasses\LevelHandler.cs" />
     <Compile Include="LevelClasses\WallTile.cs" />
+    <Compile Include="SpriteClasses\AnimationController.cs" />
     <Compile Include="SpriteClasses\CollisionController.cs" />
     <Compile Include="SpriteClasses\DebugRectangle.cs" />
     <Compile Include="SpriteClasses\Object.cs" />

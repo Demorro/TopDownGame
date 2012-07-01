@@ -57,7 +57,7 @@ namespace TopDownGame.LevelClasses
         //the colliders for the current level
         public List<Rectangle> colliders = new List<Rectangle>();
 
-        public void HandleLevels(Vector2 playerPositon, Rectangle playerCollider)
+        public void HandleLevels(Vector2 playerPositon, Rectangle playerCollider, Rectangle playerSize)
         {
             playerShouldUpdate = false;
 
@@ -85,36 +85,39 @@ namespace TopDownGame.LevelClasses
             //change the active level depending on the player position.
             //the player position is updated directly from this class in game1.cs
             //moving right
-            if (playerPositon.X > screenwidth - playerCollider.Width)
+            if (playerCollider.X > screenwidth - playerCollider.Width)
             {
                 currentLevelXCounter = currentLevelXCounter + 1;
                 playersPosition.X = 0;
                 playerShouldUpdate = true;
             }
             //moving left
-            if (playerPositon.X < 0)
+            if (playerCollider.X < 0)
             {
                 currentLevelXCounter = currentLevelXCounter - 1;
                 playersPosition.X = screenwidth - playerCollider.Width;
                 playerShouldUpdate = true;
             }
             //moving down
-            if (playerPositon.Y > screenheight - playerCollider.Height)
+            if (playerCollider.Y > screenheight - playerCollider.Height)
             {
                 currentLevelYCounter = currentLevelYCounter + 1;
                 playersPosition.Y = 0;
                 playerShouldUpdate = true;
             }
             //moving up
-            if (playerPositon.Y < 0)
+            if (playerCollider.Y < 0)
             {
                 currentLevelYCounter = currentLevelYCounter - 1;
-                playersPosition.Y = screenheight - playerCollider.Height;
+                playersPosition.Y = screenheight - playerSize.Height;
                 playerShouldUpdate = true;
             }
 
+            //Console.WriteLine(currentLevelXCounter);
+            //Console.WriteLine(currentLevelYCounter);
+            Console.WriteLine(playerCollider.Y);
+            
             activeLevel = levelArray[currentLevelXCounter, currentLevelYCounter]; //change the activelevel to what it should be.
-            Console.WriteLine(playerPositon);
 
         }
 

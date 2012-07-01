@@ -13,18 +13,19 @@ namespace TopDownGame.SpriteClasses
 {
     class PlayerController
     {
-        public float hardSpeedCap = 8;
+        public float hardSpeedCap = 3.2f;
         float derivedSpeedCap; //the acceleration used, cant just use "acceleration" cause it needs to be changed if you are going diagonal.
-        public float acceleration = 1.5f;
+        public float acceleration = 1f;
         float derivedAcceleration; //the acceleration used, cant just use "acceleration" cause it needs to be changed if you are going diagonal.
         public float slowDownFactor = 0.75f; //should be from 0 - 1, the lower the factor, the quicker you stop (somewhere around 0.6-0.95 is usually the best)
         public Vector2 velocity;
-
+        public static int animationSpeed = 25;
 
         protected KeyboardState keyboardState;
 
         public Vector2 movementController(Vector2 currentPosition, Vector2 currentVelocity)
         {
+
             Vector2 position = currentPosition; //this is the vector 2 that will be returned from this method, so that it can be set to the actual player positions
             velocity = currentVelocity; //this is the velocity, adjusted during this method.
             derivedAcceleration = acceleration;

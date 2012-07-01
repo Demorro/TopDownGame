@@ -57,7 +57,7 @@ namespace TopDownGame
 
             // TODO: use this.Content to load your game content here
             levelHandler.LoadContent(this.Content, GraphicsDevice);
-            player.LoadContent(this.Content, "Placeholder",(graphics.PreferredBackBufferWidth / 2) - 25,(graphics.PreferredBackBufferHeight / 2) - 25,1,true,GraphicsDevice);
+            player.LoadContent(this.Content, "Link",700,200, 1, true, 479, 356, 45, 69, GraphicsDevice);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace TopDownGame
             // TODO: Add your update logic here
 
             base.Update(gameTime);
-            levelHandler.HandleLevels(player.position, player.fullCollider);
+            levelHandler.HandleLevels(player.position, player.fullCollider, player.sourceRect);
 
             //deal with switching levels
             if (levelHandler.playerShouldUpdate == true)
